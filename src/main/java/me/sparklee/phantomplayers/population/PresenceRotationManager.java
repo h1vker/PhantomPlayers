@@ -100,8 +100,7 @@ public final class PresenceRotationManager {
 
         registry.remove(selected.identity().name()).ifPresent(removed -> {
             presentation.removeFakes(List.of(removed));
-            Bukkit.getServer().sendMessage(Component.text(removed.identity().name() + " left the game",
-                    NamedTextColor.YELLOW));
+            Bukkit.getServer().sendMessage(formatPresenceMessage(removed.identity().name(), false));
             long awayTicks = randomBetween(MIN_AWAY_TICKS, MAX_AWAY_TICKS);
             scheduler.runGlobalLater(awayTicks, () -> rejoin(removed));
         });
@@ -152,14 +151,25 @@ public final class PresenceRotationManager {
                 config.settings().population().maxActive());
         if (restored.isPresent()) {
             presentation.addFakes(List.of(restored.get()));
-            Bukkit.getServer().sendMessage(Component.text(fake.identity().name() + " joined the game",
-                    NamedTextColor.YELLOW));
+            Bukkit.getServer().sendMessage(formatPresenceMessage(fake.identity().name(), true));
         }
 
         synchronized (this) {
             pending.remove(key);
             away.remove(key);
         }
+    }
+
+    private Component formatPresenceMessage(String name, boolean joining) {
+        Component symbol = Component.text(joining ? "[+]" : "[-]",
+                joining ? NamedTextColor.GREEN : NamedTextColor.RED)
+                .decorate(net.kyori.adventure.text.format.TextDecoration.BOLD);
+        return symbol
+                .append(Component.space())
+                .append(Component.text("[MEMBER]", NamedTextColor.GRAY)
+                        .decorate(net.kyori.adventure.text.format.TextDecoration.BOLD))
+                .append(Component.space())
+                .append(Component.text(name, NamedTextColor.WHITE));
     }
 
     private long randomBetween(long min, long max) {
