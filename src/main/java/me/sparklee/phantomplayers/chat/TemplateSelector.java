@@ -3,28 +3,27 @@ package me.sparklee.phantomplayers.chat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public final class TemplateSelector {
 
     private TemplateSelector() {
     }
 
-    public static ChatTemplate select(List<ChatTemplate> templates, Random random, String lastTemplate,
-                                      boolean avoidRepeat) {
+    public static ChatTemplate select(List<ChatTemplate> templates, Random random, Set<String> alreadyUsed) {
         if (templates.isEmpty()) {
             return null;
         }
-        List<ChatTemplate> pool = templates;
-        if (avoidRepeat && templates.size() > 1 && lastTemplate != null) {
-            List<ChatTemplate> filtered = new ArrayList<>(templates.size() - 1);
-            for (ChatTemplate template : templates) {
-                if (!template.name().equals(lastTemplate)) {
-                    filtered.add(template);
-                }
+        List<ChatTemplate> pool = new ArrayList<>();
+        for (ChatTemplate template : templates) {
+            if (!alreadyUsed.contains(template.name())) {
+                pool.add(template);
             }
-            if (!filtered.isEmpty()) {
-                pool = filtered;
-            }
+        }
+        // Start a fresh cycle only after every available template has been used.
+        if (pool.isEmpty()) {
+            alreadyUsed.clear();
+            pool.addAll(templates);
         }
         int totalWeight = 0;
         for (ChatTemplate template : pool) {
