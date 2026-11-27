@@ -1,10 +1,6 @@
-# PhantomPlayers conversation configuration
-# --------------------------------------------------------------------------
-# Templates are shared by the whole fake population. You never need a
-# per-player conversation file. Placeholders {player1}, {player2}, ...
-# resolve to distinct active fake players. A line is broadcast exactly as
-# written after placeholder substitution.
-# --------------------------------------------------------------------------
+# CloverMC PhantomPlayers chat library
+# Templates are selected without repeating until every template has played once.
+# After the full library is exhausted, a new cycle begins.
 settings:
   enabled: true
   min-delay-seconds: 2
@@ -19,6 +15,828 @@ selection:
   avoid-repeating-template: true
 
 templates:
+  hangout_01:
+    weight: 7
+    lines:
+      - "{player1}: anyone doing anything after this"
+      - "{player2}: probably just playing"
+      - "{player3}: same, invite me if you start"
+  hangout_02:
+    weight: 7
+    lines:
+      - "{player1}: i opened minecraft and forgot what i wanted to do"
+      - "{player2}: that happens way too often"
+      - "{player3}: walk around until inspiration hits"
+  hangout_03:
+    weight: 7
+    lines:
+      - "{player1}: today went by so fast"
+      - "{player2}: you say that every day"
+      - "{player3}: because every day is confusing"
+  hangout_04:
+    weight: 7
+    lines:
+      - "{player1}: i need a day with zero responsibilities"
+      - "{player2}: that would be perfect"
+      - "{player3}: i would still find a way to procrastinate"
+  hangout_05:
+    weight: 7
+    lines:
+      - "{player1}: why is everyone quiet today"
+      - "{player2}: we are charging our social batteries"
+      - "{player3}: mine is at 2 percent"
+  hangout_06:
+    weight: 7
+    lines:
+      - "{player1}: i just remembered something embarrassing"
+      - "{player2}: you cannot say that and not explain"
+      - "{player3}: nah im taking that memory to the grave"
+  hangout_07:
+    weight: 7
+    lines:
+      - "{player1}: what are yall up to this weekend"
+      - "{player2}: no plans yet"
+      - "{player3}: best kind of weekend honestly"
+  hangout_08:
+    weight: 7
+    lines:
+      - "{player1}: i have been staring at this screen for ages"
+      - "{player2}: blink twice"
+      - "{player3}: that did not fix anything"
+  hangout_09:
+    weight: 7
+    lines:
+      - "{player1}: does anyone else make plans then cancel them"
+      - "{player2}: all the time"
+      - "{player3}: the plan was nice while it lasted"
+  hangout_10:
+    weight: 7
+    lines:
+      - "{player1}: i should probably be productive"
+      - "{player2}: probably"
+      - "{player3}: anyway what are we playing"
+  roast_05:
+    weight: 7
+    lines:
+      - "{player1}: you move like your keyboard is underwater"
+      - "{player2}: my ping is innocent"
+      - "{player3}: your keyboard needs a lifeguard"
+  roast_06:
+    weight: 7
+    lines:
+      - "{player1}: that comeback took three business days"
+      - "{player2}: i was crafting it"
+      - "{player3}: send it back for a refund"
+  roast_07:
+    weight: 7
+    lines:
+      - "{player1}: bro missed the easiest thing ever"
+      - "{player2}: i was testing something"
+      - "{player3}: testing how to miss apparently"
+  roast_08:
+    weight: 7
+    lines:
+      - "{player1}: you have confidence and no evidence"
+      - "{player2}: still more than you have"
+      - "{player3}: okay that was personal"
+  roast_09:
+    weight: 7
+    lines:
+      - "{player1}: that plan has one tiny problem"
+      - "{player2}: what problem"
+      - "{player3}: literally everything about it"
+  roast_10:
+    weight: 7
+    lines:
+      - "{player1}: you are not beating the allegations"
+      - "{player2}: which allegations"
+      - "{player3}: all of them"
+  food_05:
+    weight: 7
+    lines:
+      - "{player1}: breakfast food is good at any time"
+      - "{player2}: finally someone understands"
+      - "{player3}: pancakes at midnight hit different"
+  food_06:
+    weight: 7
+    lines:
+      - "{player1}: what is the best drink"
+      - "{player2}: cold water after being outside"
+      - "{player3}: that is actually unbeatable"
+  food_07:
+    weight: 7
+    lines:
+      - "{player1}: fries are better when you steal them"
+      - "{player2}: why is that true"
+      - "{player3}: the stolen fries have extra flavour"
+  food_08:
+    weight: 7
+    lines:
+      - "{player1}: cereal first or milk first"
+      - "{player2}: cereal first obviously"
+      - "{player3}: good, we can still be friends"
+  food_09:
+    weight: 7
+    lines:
+      - "{player1}: i could go for noodles right now"
+      - "{player2}: same with extra spice"
+      - "{player3}: now im hungry thanks"
+  food_10:
+    weight: 7
+    lines:
+      - "{player1}: is a hotdog a sandwich"
+      - "{player2}: do not start this debate"
+      - "{player3}: too late, explain your position"
+  food_11:
+    weight: 7
+    lines:
+      - "{player1}: best ice cream flavour go"
+      - "{player2}: chocolate"
+      - "{player3}: mango clears and i will not elaborate"
+  music_03:
+    weight: 7
+    lines:
+      - "{player1}: i have had the same song stuck in my head all day"
+      - "{player2}: what song"
+      - "{player3}: i forgot the name but i know every word"
+  music_04:
+    weight: 7
+    lines:
+      - "{player1}: do you listen to music while gaming"
+      - "{player2}: always"
+      - "{player3}: silence makes every loss louder"
+  music_05:
+    weight: 7
+    lines:
+      - "{player1}: old songs have a different vibe"
+      - "{player2}: some never get old"
+      - "{player3}: adding them to my playlist right now"
+  music_06:
+    weight: 7
+    lines:
+      - "{player1}: one song on repeat or shuffle"
+      - "{player2}: shuffle"
+      - "{player3}: one song until i get tired of it"
+  entertainment_02:
+    weight: 7
+    lines:
+      - "{player1}: need a new show to watch"
+      - "{player2}: something short or a long series"
+      - "{player3}: short, my attention span is cooked"
+  entertainment_03:
+    weight: 7
+    lines:
+      - "{player1}: rewatching a show is better than starting one"
+      - "{player2}: depends on the show"
+      - "{player3}: comfort shows always win"
+  entertainment_04:
+    weight: 7
+    lines:
+      - "{player1}: who actually reads movie reviews"
+      - "{player2}: i just watch the trailer"
+      - "{player3}: i watch the trailer then forget to watch the movie"
+  anime_02:
+    weight: 7
+    lines:
+      - "{player1}: sub or dub"
+      - "{player2}: both are fine"
+      - "{player3}: depends on the voice acting"
+  anime_03:
+    weight: 7
+    lines:
+      - "{player1}: i need an anime with good fights"
+      - "{player2}: and a good story"
+      - "{player3}: and episodes that do not end on a cliffhanger"
+  anime_04:
+    weight: 7
+    lines:
+      - "{player1}: finished a series and now i feel empty"
+      - "{player2}: the post anime depression is real"
+      - "{player3}: time to find another one"
+  gaming_05:
+    weight: 7
+    lines:
+      - "{player1}: what game has the best soundtrack"
+      - "{player2}: minecraft is up there"
+      - "{player3}: the music makes everything feel nostalgic"
+  gaming_06:
+    weight: 7
+    lines:
+      - "{player1}: i keep saying one more match"
+      - "{player2}: how many matches so far"
+      - "{player3}: we do not discuss that"
+  gaming_07:
+    weight: 7
+    lines:
+      - "{player1}: controller or keyboard and mouse"
+      - "{player2}: keyboard and mouse"
+      - "{player3}: controller for racing games though"
+  gaming_08:
+    weight: 7
+    lines:
+      - "{player1}: i miss playing games with no updates"
+      - "{player2}: updates fix stuff sometimes"
+      - "{player3}: and sometimes they break everything"
+  gaming_09:
+    weight: 7
+    lines:
+      - "{player1}: what game did you play as a kid"
+      - "{player2}: minecraft and old racing games"
+      - "{player3}: those were the days"
+  gaming_10:
+    weight: 7
+    lines:
+      - "{player1}: i downloaded a game and never opened it"
+      - "{player2}: the backlog is growing"
+      - "{player3}: we collect games, not play them"
+  gaming_11:
+    weight: 7
+    lines:
+      - "{player1}: ranked games are stressful"
+      - "{player2}: that is why i play casual"
+      - "{player3}: casual somehow gets more competitive"
+  gaming_12:
+    weight: 7
+    lines:
+      - "{player1}: i need a new mouse"
+      - "{player2}: what happened to yours"
+      - "{player3}: it has seen things"
+  minecraft_04:
+    weight: 7
+    lines:
+      - "{player1}: what is the most annoying mob"
+      - "{player2}: baby zombies"
+      - "{player3}: skeletons when you have no shield"
+  minecraft_05:
+    weight: 7
+    lines:
+      - "{player1}: i always forget to bring torches"
+      - "{player2}: then the cave becomes a horror game"
+      - "{player3}: free jump scare simulator"
+  minecraft_06:
+    weight: 7
+    lines:
+      - "{player1}: what block do you use way too much"
+      - "{player2}: spruce planks"
+      - "{player3}: stone bricks for literally everything"
+  minecraft_07:
+    weight: 7
+    lines:
+      - "{player1}: i found a village"
+      - "{player2}: protect the villagers at all costs"
+      - "{player3}: one raid and the whole place is chaos"
+  minecraft_08:
+    weight: 7
+    lines:
+      - "{player1}: nether trips never go as planned"
+      - "{player2}: i only went for quartz"
+      - "{player3}: came back with zero quartz and a story"
+  minecraft_09:
+    weight: 7
+    lines:
+      - "{player1}: do you keep old worlds"
+      - "{player2}: yeah, nostalgia"
+      - "{player3}: sometimes i load them just to look around"
+  minecraft_10:
+    weight: 7
+    lines:
+      - "{player1}: the end dimension feels so empty"
+      - "{player2}: until the dragon starts flying at you"
+      - "{player3}: then it feels very crowded"
+  minecraft_11:
+    weight: 7
+    lines:
+      - "{player1}: i spent ages sorting my chests"
+      - "{player2}: and then you need one item from every chest"
+      - "{player3}: storage is the real endgame"
+  minecraft_12:
+    weight: 7
+    lines:
+      - "{player1}: what is your favourite wood type"
+      - "{player2}: dark oak"
+      - "{player3}: spruce is still the goat"
+  minecraft_13:
+    weight: 7
+    lines:
+      - "{player1}: i need to stop digging straight down"
+      - "{player2}: one day you will learn"
+      - "{player3}: today is not that day"
+  lifesteal_04:
+    weight: 7
+    lines:
+      - "{player1}: we should run a team fight sometime"
+      - "{player2}: only if everyone brings gear"
+      - "{player3}: and someone remembers food"
+  lifesteal_05:
+    weight: 7
+    lines:
+      - "{player1}: i lost my gapples again"
+      - "{player2}: how do you keep doing that"
+      - "{player3}: i panic eat them"
+  lifesteal_06:
+    weight: 7
+    lines:
+      - "{player1}: base security is actually important"
+      - "{player2}: especially on lifesteal"
+      - "{player3}: never trust a suspicious wall"
+  lifesteal_07:
+    weight: 7
+    lines:
+      - "{player1}: i need to farm before fighting"
+      - "{player2}: smart choice"
+      - "{player3}: being prepared is half the fight"
+  lifesteal_08:
+    weight: 7
+    lines:
+      - "{player1}: who has spare pearls"
+      - "{player2}: check your ender chest"
+      - "{player3}: i knew i forgot something"
+  lifesteal_09:
+    weight: 7
+    lines:
+      - "{player1}: that fight was closer than expected"
+      - "{player2}: my heart was racing"
+      - "{player3}: same, i nearly dropped my mouse"
+  lifesteal_10:
+    weight: 7
+    lines:
+      - "{player1}: we need to practice crystal timing"
+      - "{player2}: and aim"
+      - "{player3}: and not panicking"
+  pvp_03:
+    weight: 7
+    lines:
+      - "{player1}: how do people aim so smoothly"
+      - "{player2}: practice and a good setup"
+      - "{player3}: mostly practice i think"
+  pvp_04:
+    weight: 7
+    lines:
+      - "{player1}: i got comboed so hard"
+      - "{player2}: take a breath"
+      - "{player3}: my character is still recovering"
+  pvp_05:
+    weight: 7
+    lines:
+      - "{player1}: do you use high or low sensitivity"
+      - "{player2}: medium"
+      - "{player3}: the answer is whatever feels right"
+  pvp_06:
+    weight: 7
+    lines:
+      - "{player1}: i need to stop chasing low health players"
+      - "{player2}: that is how you walk into traps"
+      - "{player3}: i know but the temptation is real"
+  pvp_07:
+    weight: 7
+    lines:
+      - "{player1}: clean hit"
+      - "{player2}: thanks"
+      - "{player3}: that was mostly luck"
+  pvp_08:
+    weight: 7
+    lines:
+      - "{player1}: my hands forgot how to play"
+      - "{player2}: restart your brain"
+      - "{player3}: brb updating drivers"
+  school_04:
+    weight: 7
+    lines:
+      - "{player1}: i finished my homework early for once"
+      - "{player2}: character development"
+      - "{player3}: do not waste this rare moment"
+  school_05:
+    weight: 7
+    lines:
+      - "{player1}: group projects are something else"
+      - "{player2}: one person does everything"
+      - "{player3}: and everyone says we did it"
+  school_06:
+    weight: 7
+    lines:
+      - "{player1}: i forgot there was a test"
+      - "{player2}: that is not ideal"
+      - "{player3}: understatement of the year"
+  school_07:
+    weight: 7
+    lines:
+      - "{player1}: what subject is actually fun"
+      - "{player2}: computer science"
+      - "{player3}: anything with a practical project"
+  school_08:
+    weight: 7
+    lines:
+      - "{player1}: the weekend needs to be longer"
+      - "{player2}: two extra days please"
+      - "{player3}: and then we would ask for two more"
+  school_09:
+    weight: 7
+    lines:
+      - "{player1}: i keep losing my pens"
+      - "{player2}: they enter another dimension"
+      - "{player3}: check behind your ear"
+  debate_04:
+    weight: 7
+    lines:
+      - "{player1}: sweet or salty snacks"
+      - "{player2}: salty"
+      - "{player3}: sweet, no contest"
+  debate_05:
+    weight: 7
+    lines:
+      - "{player1}: beach holiday or mountain holiday"
+      - "{player2}: mountains"
+      - "{player3}: beach, i need sunshine"
+  debate_06:
+    weight: 7
+    lines:
+      - "{player1}: early start or late finish"
+      - "{player2}: late finish"
+      - "{player3}: early start so i can be done"
+  debate_07:
+    weight: 7
+    lines:
+      - "{player1}: texting or calling"
+      - "{player2}: texting"
+      - "{player3}: calling is faster but texting is safer"
+  debate_08:
+    weight: 7
+    lines:
+      - "{player1}: would you rather fly or teleport"
+      - "{player2}: teleport"
+      - "{player3}: flying, the views would be insane"
+  debate_09:
+    weight: 7
+    lines:
+      - "{player1}: is  cereal a soup"
+      - "{player2}: please do not do this"
+      - "{player3}: we are having this debate now"
+  random_06:
+    weight: 7
+    lines:
+      - "{player1}: if you could instantly learn one skill"
+      - "{player2}: cooking"
+      - "{player3}: playing an instrument"
+  random_07:
+    weight: 7
+    lines:
+      - "{player1}: what is the most useless superpower"
+      - "{player2}: always knowing the time"
+      - "{player3}: that is just a watch"
+  random_08:
+    weight: 7
+    lines:
+      - "{player1}: would you rather explore space or the ocean"
+      - "{player2}: space"
+      - "{player3}: the ocean is terrifying but interesting"
+  random_09:
+    weight: 7
+    lines:
+      - "{player1}: what animal would make the best minecraft pet"
+      - "{player2}: fox"
+      - "{player3}: capybara, easy"
+  random_10:
+    weight: 7
+    lines:
+      - "{player1}: if you had a free plane ticket"
+      - "{player2}: somewhere cold"
+      - "{player3}: somewhere with good food"
+  random_11:
+    weight: 7
+    lines:
+      - "{player1}: what is a small thing that makes your day"
+      - "{player2}: a good message"
+      - "{player3}: finding money in an old pocket"
+  random_12:
+    weight: 7
+    lines:
+      - "{player1}: do you prefer rain or snow"
+      - "{player2}: rain when im indoors"
+      - "{player3}: snow if i do not have to drive"
+  random_13:
+    weight: 7
+    lines:
+      - "{player1}: what is your most used emoji"
+      - "{player2}: 😭"
+      - "{player3}: 💀 probably"
+  random_14:
+    weight: 7
+    lines:
+      - "{player1}: if you could pause time for an hour"
+      - "{player2}: sleep"
+      - "{player3}: finish every task with no pressure"
+  random_15:
+    weight: 7
+    lines:
+      - "{player1}: what would your dream room have"
+      - "{player2}: a huge desk setup"
+      - "{player3}: a comfy bed and no alarms"
+  memes_04:
+    weight: 7
+    lines:
+      - "{player1}: the group chat is never normal"
+      - "{player2}: it is a public safety concern"
+      - "{player3}: and somehow we keep coming back"
+  memes_05:
+    weight: 7
+    lines:
+      - "{player1}: my brain has 37 tabs open"
+      - "{player2}: and one is playing music"
+      - "{player3}: but nobody knows which one"
+  memes_06:
+    weight: 7
+    lines:
+      - "{player1}: that was not on my bingo card"
+      - "{player2}: nothing is on your bingo card"
+      - "{player3}: life is just random events"
+  memes_07:
+    weight: 7
+    lines:
+      - "{player1}: the way i stared at that message"
+      - "{player2}: read it again slowly"
+      - "{player3}: no i understood it, i just needed a moment"
+  memes_08:
+    weight: 7
+    lines:
+      - "{player1}: we are so back"
+      - "{player2}: what happened"
+      - "{player3}: nothing, just felt like saying it"
+  memes_09:
+    weight: 7
+    lines:
+      - "{player1}: this is my villain origin story"
+      - "{player2}: you say that every week"
+      - "{player3}: and every week it gets worse"
+  memes_10:
+    weight: 7
+    lines:
+      - "{player1}: bro really said skill issue"
+      - "{player2}: it was a skill issue"
+      - "{player3}: at least you are self aware"
+  tech_01:
+    weight: 7
+    lines:
+      - "{player1}: my pc takes forever to start"
+      - "{player2}: time to make a snack"
+      - "{player3}: by the time it boots you can cook dinner"
+  tech_02:
+    weight: 7
+    lines:
+      - "{player1}: wireless or wired headphones"
+      - "{player2}: wired, no charging"
+      - "{player3}: wireless, no cables everywhere"
+  tech_03:
+    weight: 7
+    lines:
+      - "{player1}: why does my storage fill up so fast"
+      - "{player2}: screenshots probably"
+      - "{player3}: i have 400 screenshots of nothing"
+  tech_04:
+    weight: 7
+    lines:
+      - "{player1}: i updated my drivers"
+      - "{player2}: did it fix the issue"
+      - "{player3}: it created three new ones"
+  tech_05:
+    weight: 7
+    lines:
+      - "{player1}: what browser do you use"
+      - "{player2}: firefox"
+      - "{player3}: same, too many tabs though"
+  sleep_01:
+    weight: 7
+    lines:
+      - "{player1}: i should sleep earlier"
+      - "{player2}: you say that every night"
+      - "{player3}: and every night i ignore myself"
+  sleep_02:
+    weight: 7
+    lines:
+      - "{player1}: why am i tired after sleeping"
+      - "{player2}: maybe you need more sleep"
+      - "{player3}: i need a software update"
+  sleep_03:
+    weight: 7
+    lines:
+      - "{player1}: just one more video"
+      - "{player2}: famous last words"
+      - "{player3}: the sun is coming up"
+  sleep_04:
+    weight: 7
+    lines:
+      - "{player1}: i woke up and went straight online"
+      - "{player2}: priorities"
+      - "{player3}: at least you are consistent"
+  pets_02:
+    weight: 7
+    lines:
+      - "{player1}: cats act like they pay rent"
+      - "{player2}: they own the house"
+      - "{player3}: we are just guests"
+  pets_03:
+    weight: 7
+    lines:
+      - "{player1}: dogs get excited over everything"
+      - "{player2}: that is the best part"
+      - "{player3}: their happiness is contagious"
+  pets_04:
+    weight: 7
+    lines:
+      - "{player1}: my pet stared at a wall for ten minutes"
+      - "{player2}: maybe it saw something"
+      - "{player3}: do not say that 😭"
+  travel_01:
+    weight: 7
+    lines:
+      - "{player1}: window seat or aisle seat"
+      - "{player2}: window"
+      - "{player3}: aisle, i like getting up"
+  travel_02:
+    weight: 7
+    lines:
+      - "{player1}: packing is the worst part"
+      - "{player2}: i always forget something"
+      - "{player3}: make a list and still forget it"
+  travel_03:
+    weight: 7
+    lines:
+      - "{player1}: road trips need a good playlist"
+      - "{player2}: and snacks"
+      - "{player3}: mostly snacks"
+  creative_01:
+    weight: 7
+    lines:
+      - "{player1}: i want to learn drawing"
+      - "{player2}: start with simple shapes"
+      - "{player3}: then draw a minecraft potato"
+  creative_02:
+    weight: 7
+    lines:
+      - "{player1}: i tried making a beat"
+      - "{player2}: how did it go"
+      - "{player3}: it sounds like a washing machine"
+  creative_03:
+    weight: 7
+    lines:
+      - "{player1}: building ideas are not the problem"
+      - "{player2}: finishing them is"
+      - "{player3}: my worlds are full of unfinished projects"
+  money_01:
+    weight: 7
+    lines:
+      - "{player1}: saving money is difficult"
+      - "{player2}: especially when there is a sale"
+      - "{player3}: a sale is not saving if you buy everything"
+  money_02:
+    weight: 7
+    lines:
+      - "{player1}: what would you buy with extra cash"
+      - "{player2}: a better pc"
+      - "{player3}: i would save half and spend half"
+  sports_01:
+    weight: 7
+    lines:
+      - "{player1}: anyone watching the match later"
+      - "{player2}: maybe, depends who is playing"
+      - "{player3}: i just want a close game"
+  sports_02:
+    weight: 7
+    lines:
+      - "{player1}: playing sports or watching"
+      - "{player2}: playing"
+      - "{player3}: watching with snacks"
+  weekend_01:
+    weight: 7
+    lines:
+      - "{player1}: weekend plans"
+      - "{player2}: sleep and games"
+      - "{player3}: that is a solid schedule"
+  weekend_02:
+    weight: 7
+    lines:
+      - "{player1}: sunday always goes too quickly"
+      - "{player2}: sunday needs a pause button"
+      - "{player3}: monday is already loading"
+  server_01:
+    weight: 7
+    lines:
+      - "{player1}: this server feels chill today"
+      - "{player2}: yeah, good vibes"
+      - "{player3}: lets keep it that way"
+  server_02:
+    weight: 7
+    lines:
+      - "{player1}: who is up for a group adventure"
+      - "{player2}: im in"
+      - "{player3}: same, just tell me where to go"
+  server_03:
+    weight: 7
+    lines:
+      - "{player1}: we should take a group screenshot"
+      - "{player2}: good idea"
+      - "{player3}: everyone stand still for once"
+  server_04:
+    weight: 7
+    lines:
+      - "{player1}: i like when everyone is online"
+      - "{player2}: makes the place feel alive"
+      - "{player3}: now we just need snacks"
+  server_05:
+    weight: 7
+    lines:
+      - "{player1}: someone start a random challenge"
+      - "{player2}: first person to find a village"
+      - "{player3}: loser has to build the winner a house"
+  server_06:
+    weight: 7
+    lines:
+      - "{player1}: anyone want to explore"
+      - "{player2}: sure, bring food"
+      - "{player3}: and extra blocks this time"
+  server_07:
+    weight: 7
+    lines:
+      - "{player1}: i need a new goal on this server"
+      - "{player2}: build something huge"
+      - "{player3}: or collect every music disc"
+  server_08:
+    weight: 7
+    lines:
+      - "{player1}: lets do a no armor challenge"
+      - "{player2}: that sounds dangerous"
+      - "{player3}: exactly why it sounds fun"
+  server_09:
+    weight: 7
+    lines:
+      - "{player1}: who has the best base tour"
+      - "{player2}: mine is still unfinished"
+      - "{player3}: unfinished bases deserve representation"
+  server_10:
+    weight: 7
+    lines:
+      - "{player1}: we should make a community farm"
+      - "{player2}: im down"
+      - "{player3}: i will bring seeds"
+  short_06:
+    weight: 7
+    lines:
+      - "{player1}: yo"
+      - "{player2}: what"
+      - "{player3}: nothing just checking if you are alive"
+  short_07:
+    weight: 7
+    lines:
+      - "{player1}: guess what"
+      - "{player2}: what"
+      - "{player3}: i forgot"
+  short_08:
+    weight: 7
+    lines:
+      - "{player1}: i have news"
+      - "{player2}: good news or bad news"
+      - "{player3}: i forgot that too"
+  short_09:
+    weight: 7
+    lines:
+      - "{player1}: real"
+      - "{player1}: real"
+      - "{player3}: extremely real"
+  short_10:
+    weight: 7
+    lines:
+      - "{player1}: bruh"
+      - "{player2}: exactly"
+      - "{player3}: you get it"
+  short_11:
+    weight: 7
+    lines:
+      - "{player1}: im cooked"
+      - "{player2}: same"
+      - "{player3}: we are all cooked"
+  short_12:
+    weight: 7
+    lines:
+      - "{player1}: that makes sense"
+      - "{player2}: does it though"
+      - "{player3}: not really"
+  short_13:
+    weight: 7
+    lines:
+      - "{player1}: fair enough"
+      - "{player2}: fair"
+      - "{player3}: very fair"
+  short_14:
+    weight: 7
+    lines:
+      - "{player1}: wait what"
+      - "{player2}: exactly"
+      - "{player3}: my point"
+  short_15:
+    weight: 7
+    lines:
+      - "{player1}: we move"
+      - "{player1}: we move"
+      - "{player3}: always moving"
   greetings:
     weight: 5
     lines:
@@ -26,7 +844,7 @@ templates:
       - "{player2}: sup"
       - "{player1}: not much, just wandering around"
 
-  server-chat:
+  server_chat:
     weight: 10
     lines:
       - "{player1}: anyone online?"
@@ -39,68 +857,3 @@ templates:
       - "{player1}: what are you guys playing?"
       - "{player2}: probably some survival"
       - "{player3}: sounds good"
-
-  mining:
-    weight: 6
-    lines:
-      - "{player1}: found a huge cave system"
-      - "{player2}: any diamonds?"
-      - "{player1}: a few, mostly copper though"
-      - "{player3}: copper is underrated"
-
-  building:
-    weight: 6
-    lines:
-      - "{player1}: working on a new base"
-      - "{player2}: what style?"
-      - "{player1}: mostly spruce and stone"
-      - "{player2}: classic, I like it"
-
-  exploring:
-    weight: 5
-    lines:
-      - "{player1}: has anyone been past the eastern mountains?"
-      - "{player2}: once, it is mostly taiga"
-      - "{player1}: worth the trip?"
-
-  trading:
-    weight: 4
-    lines:
-      - "{player1}: does anyone have spare emeralds?"
-      - "{player2}: I can trade a few"
-      - "{player1}: deal"
-
-  weather:
-    weight: 3
-    lines:
-      - "{player1}: is it raining for everyone else?"
-      - "{player2}: yeah, all morning"
-      - "{player3}: good for the crops"
-
-  farms:
-    weight: 4
-    lines:
-      - "{player1}: my iron farm finally works"
-      - "{player2}: how many villagers?"
-      - "{player1}: three, it is small but steady"
-
-  late-night:
-    weight: 3
-    lines:
-      - "{player1}: still awake?"
-      - "{player2}: unfortunately"
-      - "{player1}: same, one more build"
-
-  redstone:
-    weight: 4
-    lines:
-      - "{player1}: why is my door opening the wrong way"
-      - "{player2}: check the repeater delay"
-      - "{player1}: that was it, thanks"
-
-  pets:
-    weight: 3
-    lines:
-      - "{player1}: my wolf keeps sitting in the doorway"
-      - "{player2}: at least it is not a cat on the furnace"
-      - "{player3}: both are valid roommates"
