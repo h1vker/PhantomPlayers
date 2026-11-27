@@ -3,11 +3,11 @@
 # After the full library is exhausted, a new cycle begins.
 settings:
   enabled: true
-  min-delay-seconds: 4
-  max-delay-seconds: 8
-  conversation-cooldown-seconds: 3
-  max-concurrent-conversations: 4
-  max-lines-per-conversation: 7
+  min-delay-seconds: 5
+  max-delay-seconds: 10
+  conversation-cooldown-seconds: 4
+  max-concurrent-conversations: 3
+  max-lines-per-conversation: 8
 
 selection:
   randomize-delays: true
