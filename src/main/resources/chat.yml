@@ -799,7 +799,7 @@ templates:
     weight: 7
     lines:
       - "{player1}: real"
-      - "{player1}: real"
+      - "{player2}: real"
       - "{player3}: extremely real"
   short_10:
     weight: 7
@@ -835,21 +835,21 @@ templates:
     weight: 7
     lines:
       - "{player1}: we move"
-      - "{player1}: we move"
+      - "{player2}: we move"
       - "{player3}: always moving"
   greetings:
     weight: 5
     lines:
       - "{player1}: hey"
       - "{player2}: sup"
-      - "{player1}: not much, just wandering around"
+      - "{player3}: not much, just wandering around"
 
   server_chat:
     weight: 10
     lines:
       - "{player1}: anyone online?"
       - "{player2}: yeah just chilling"
-      - "{player1}: nice"
+      - "{player3}: nice"
 
   gameplay:
     weight: 8
