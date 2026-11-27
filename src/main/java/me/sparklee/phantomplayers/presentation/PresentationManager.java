@@ -457,7 +457,8 @@ public final class PresentationManager {
             Component displayName = Component.text("[MEMBER]", NamedTextColor.GRAY)
                     .decorate(TextDecoration.BOLD)
                     .append(Component.space())
-                    .append(Component.text(name, NamedTextColor.WHITE));
+                    .append(Component.text(name, NamedTextColor.WHITE)
+                            .decoration(TextDecoration.BOLD, TextDecoration.State.FALSE));
             profiles.add(new NmsPackets.TabEntry(entry.fake.identity().uuid(), name,
                     entry.skin, listed, entry.latency, displayName));
         }
