@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Random;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -180,6 +182,25 @@ class ChatEngineTest {
         scheduler.advance(1_000);
         assertTrue(delivery.lines.isEmpty());
         assertFalse(engine.isRunning());
+    }
+
+    @Test
+    void doesNotRepeatTemplatesUntilEveryTemplateHasPlayed() {
+        List<ChatTemplate> templates = List.of(
+                new ChatTemplate("one", 1, List.of("{player1}: one")),
+                new ChatTemplate("two", 1, List.of("{player1}: two")),
+                new ChatTemplate("three", 1, List.of("{player1}: three"))
+        );
+        Set<String> used = new HashSet<>();
+        for (int cycle = 0; cycle < 3; cycle++) {
+            ChatTemplate selected = TemplateSelector.select(templates, new Random(cycle), used);
+            assertFalse(used.contains(selected.name()));
+            used.add(selected.name());
+        }
+        assertEquals(3, used.size());
+        ChatTemplate nextCycle = TemplateSelector.select(templates, new Random(4), used);
+        assertFalse(used.contains(nextCycle.name()));
+        assertEquals(0, used.size(), "selector resets the used set only after exhausting every template");
     }
 
     @Test
