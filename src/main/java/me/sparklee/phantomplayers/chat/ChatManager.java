@@ -5,6 +5,8 @@ import me.sparklee.phantomplayers.platform.Cancellable;
 import me.sparklee.phantomplayers.platform.SchedulerService;
 import me.sparklee.phantomplayers.population.PopulationRegistry;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
@@ -65,6 +67,24 @@ public final class ChatManager {
         return engine != null && engine.isRunning();
     }
 
+    private Component formatFakeChat(String line) {
+        int separator = line.indexOf(": ");
+        if (separator <= 0) {
+            return Component.text(line);
+        }
+        String speaker = line.substring(0, separator);
+        if (!registry.activeNames().contains(speaker)) {
+            return Component.text(line);
+        }
+        String body = line.substring(separator + 2);
+        return Component.text("[] ", NamedTextColor.GRAY)
+                .append(Component.text("[MEMBER]", NamedTextColor.GRAY).decorate(TextDecoration.BOLD))
+                .append(Component.space())
+                .append(Component.text(speaker, NamedTextColor.WHITE))
+                .append(Component.text(" -> ", NamedTextColor.WHITE).decorate(TextDecoration.BOLD))
+                .append(Component.text(body, NamedTextColor.WHITE));
+    }
+
     private final class BukkitDelivery implements ChatEngine.Delivery {
         @Override
         public boolean hasAudience() {
@@ -73,7 +93,7 @@ public final class ChatManager {
 
         @Override
         public void broadcast(String line) {
-            Component message = Component.text(line);
+            Component message = formatFakeChat(line);
             if (broadcastToConsole) {
                 Bukkit.getServer().sendMessage(message);
             } else {
