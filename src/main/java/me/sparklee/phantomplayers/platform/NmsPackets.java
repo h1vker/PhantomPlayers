@@ -1,6 +1,7 @@
 package me.sparklee.phantomplayers.platform;
 
 import me.sparklee.phantomplayers.skin.SkinData;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -28,6 +29,6 @@ public interface NmsPackets {
 
     String description();
 
-    record TabEntry(UUID uuid, String name, SkinData skin, boolean listed, int latency) {
+    record TabEntry(UUID uuid, String name, SkinData skin, boolean listed, int latency, Component displayName) {
     }
 }
