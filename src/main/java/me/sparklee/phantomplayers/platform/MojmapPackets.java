@@ -33,6 +33,7 @@ public final class MojmapPackets implements NmsPackets {
     private final Class<?> actionClass;
     private final Constructor<?> updateConstructor;
     private final Constructor<?> entryConstructor;
+    private final Method adventureToVanilla;
     private final Class<?> gameTypeClass;
     private final Object survival;
     private final Class<?> gameProfileClass;
@@ -73,6 +74,8 @@ public final class MojmapPackets implements NmsPackets {
         this.updateConstructor = packetClass.getConstructor(EnumSet.class, List.class);
         this.entryConstructor = entryClass.getConstructor(UUID.class, Class.forName("com.mojang.authlib.GameProfile"),
                 boolean.class, int.class, gameTypeClass, componentClass, boolean.class, int.class, chatSessionClass);
+        this.adventureToVanilla = Class.forName("io.papermc.paper.adventure.PaperAdventure")
+                .getMethod("asVanilla", net.kyori.adventure.text.Component.class);
 
         this.gameProfileClass = Class.forName("com.mojang.authlib.GameProfile");
         this.gameProfileConstructor = gameProfileClass.getConstructor(UUID.class, String.class);
@@ -310,8 +313,10 @@ public final class MojmapPackets implements NmsPackets {
     private Object createEntry(TabEntry entry) {
         try {
             Object profile = createProfile(entry);
+            Object displayName = entry.displayName() == null ? null
+                    : adventureToVanilla.invoke(null, entry.displayName());
             return entryConstructor.newInstance(entry.uuid(), profile, entry.listed(),
-                    Math.max(0, entry.latency()), survival, null, false, 0, null);
+                    Math.max(0, entry.latency()), survival, displayName, false, 0, null);
         } catch (ReflectiveOperationException exception) {
             throw new IllegalStateException("Unable to construct player-info entry for " + entry.name(), exception);
         }
