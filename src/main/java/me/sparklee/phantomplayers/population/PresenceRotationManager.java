@@ -161,15 +161,16 @@ public final class PresenceRotationManager {
     }
 
     private Component formatPresenceMessage(String name, boolean joining) {
-        Component symbol = Component.text(joining ? "[+]" : "[-]",
-                joining ? NamedTextColor.GREEN : NamedTextColor.RED)
-                .decorate(net.kyori.adventure.text.format.TextDecoration.BOLD);
+        var bold = net.kyori.adventure.text.format.TextDecoration.BOLD;
+        Component symbol = Component.text("[", NamedTextColor.DARK_GRAY).decorate(bold)
+                .append(Component.text(joining ? "+" : "-", joining ? NamedTextColor.GREEN : NamedTextColor.RED)
+                        .decorate(bold))
+                .append(Component.text("]", NamedTextColor.DARK_GRAY).decorate(bold));
         return symbol
                 .append(Component.space())
-                .append(Component.text("[MEMBER]", NamedTextColor.GRAY)
-                        .decorate(net.kyori.adventure.text.format.TextDecoration.BOLD))
+                .append(Component.text("[MEMBER]", NamedTextColor.GRAY).decorate(bold))
                 .append(Component.space())
-                .append(Component.text(name, NamedTextColor.WHITE));
+                .append(Component.text(name, NamedTextColor.WHITE).decorate(bold));
     }
 
     private long randomBetween(long min, long max) {
