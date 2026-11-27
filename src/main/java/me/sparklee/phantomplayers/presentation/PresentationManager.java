@@ -10,6 +10,9 @@ import me.sparklee.phantomplayers.population.ActiveFakePlayer;
 import me.sparklee.phantomplayers.population.SpawnPoint;
 import me.sparklee.phantomplayers.skin.SkinData;
 import me.sparklee.phantomplayers.skin.SkinService;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.HeightMap;
 import org.bukkit.Location;
@@ -450,8 +453,13 @@ public final class PresentationManager {
         List<NmsPackets.TabEntry> profiles = new ArrayList<>(snapshot.size());
         boolean listed = settings.presentation().tabList();
         for (Entry entry : snapshot) {
-            profiles.add(new NmsPackets.TabEntry(entry.fake.identity().uuid(), entry.fake.identity().name(),
-                    entry.skin, listed, entry.latency));
+            String name = entry.fake.identity().name();
+            Component displayName = Component.text("[MEMBER]", NamedTextColor.GRAY)
+                    .decorate(TextDecoration.BOLD)
+                    .append(Component.space())
+                    .append(Component.text(name, NamedTextColor.WHITE));
+            profiles.add(new NmsPackets.TabEntry(entry.fake.identity().uuid(), name,
+                    entry.skin, listed, entry.latency, displayName));
         }
         return packets.tabUpsert(profiles);
     }
