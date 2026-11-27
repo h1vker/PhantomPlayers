@@ -18,6 +18,7 @@ import me.sparklee.phantomplayers.platform.NmsPackets;
 import me.sparklee.phantomplayers.platform.PaperSchedulerService;
 import me.sparklee.phantomplayers.platform.PlatformInfo;
 import me.sparklee.phantomplayers.population.PopulationRegistry;
+import me.sparklee.phantomplayers.population.PresenceRotationManager;
 import me.sparklee.phantomplayers.population.SpawnService;
 import me.sparklee.phantomplayers.presentation.PlayerConnectionListener;
 import me.sparklee.phantomplayers.presentation.PresentationManager;
@@ -48,6 +49,7 @@ public final class PhantomPlayers extends JavaPlugin {
     private PresentationManager presentation;
     private ChatManager chatManager;
     private SpawnService spawnService;
+    private PresenceRotationManager presenceRotation;
     private PlaceholderIntegration placeholders;
     private final AtomicBoolean placeholderLogged = new AtomicBoolean();
 
@@ -135,6 +137,9 @@ public final class PhantomPlayers extends JavaPlugin {
 
         spawnService = new SpawnService(configManager, registry, identityManager, presentation, skins, scheduler,
                 metrics);
+        presenceRotation = new PresenceRotationManager(registry, identityManager, presentation, configManager, scheduler);
+        presenceRotation.start();
+
         PhantomCommand command = new PhantomCommand(this, spawnService, registry, identityManager);
         PluginCommand pluginCommand = getCommand("fp");
         if (pluginCommand == null) {
@@ -157,6 +162,9 @@ public final class PhantomPlayers extends JavaPlugin {
         }
         if (chatManager != null) {
             chatManager.stop();
+        }
+        if (presenceRotation != null) {
+            presenceRotation.stop();
         }
         if (presentation != null) {
             presentation.stop();
