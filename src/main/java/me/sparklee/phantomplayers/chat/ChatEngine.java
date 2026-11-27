@@ -43,12 +43,12 @@ public final class ChatEngine {
     private final Random random;
     private final Set<Cancellable> conversationTasks = new HashSet<>();
     private final List<Cancellable> everything = new ArrayList<>();
+    private final Set<String> usedTemplates = new HashSet<>();
 
     private Cancellable ticker;
     private boolean running;
     private int activeConversations;
     private long cooldownTicks;
-    private String lastTemplate;
 
     public ChatEngine(ChatConfig config, Names names, Delivery delivery, Scheduler scheduler, Random random) {
         this.config = config;
@@ -82,6 +82,7 @@ public final class ChatEngine {
         ticker = null;
         activeConversations = 0;
         cooldownTicks = 0;
+        usedTemplates.clear();
     }
 
     public synchronized boolean isRunning() {
@@ -106,8 +107,9 @@ public final class ChatEngine {
         if (activeNames.size() < 2) {
             return;
         }
-        ChatTemplate template = TemplateSelector.select(config.templates(), random, lastTemplate,
-                config.avoidRepeatingTemplate());
+        ChatTemplate template = config.avoidRepeatingTemplate()
+                ? TemplateSelector.select(config.templates(), random, usedTemplates)
+                : TemplateSelector.select(config.templates(), random, Set.of());
         if (template == null) {
             return;
         }
@@ -117,7 +119,9 @@ public final class ChatEngine {
             return;
         }
         activeConversations++;
-        lastTemplate = template.name();
+        if (config.avoidRepeatingTemplate()) {
+            usedTemplates.add(template.name());
+        }
         schedule(plan, 0);
     }
 
