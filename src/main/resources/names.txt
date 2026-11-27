@@ -1,6 +1,5 @@
 # CloverMC modern Gen-Z-style fictional Minecraft usernames
-# One username per line. Minecraft username-safe: 3-16 characters.
-# Mix of lowercase handles, gamer tags, abbreviations, and playful names.
+# One username per line. Minecraft username-safe: letters, numbers, underscores only; 3-16 characters.
 itsvex
 notzay
 lowkeykai
@@ -11,7 +10,7 @@ itzsami
 yoitszain
 imrizz
 wheresmilo
-zyro.exe
+zyroexe
 k1ro
 n0ahh
 a1exx
@@ -98,7 +97,7 @@ spacebarz
 capslock
 sussybyte
 yapmaster
- yapper
+yapper
 yapology
 brainrotz
 sigmaish
@@ -109,7 +108,7 @@ goofball
 sillygoose
 mewtwoo
 mochii
-boba.exe
+bobaexe
 toastyy
 wafflez
 noodlez
@@ -162,11 +161,11 @@ secondmain
 rareusername
 takenagain
 usernotfound
-unknown.exe
+unknownexe
 zainontop
 ayaanv2
 rayanx
-sami.exe
+samiex
 hamzavibes
 rafiplays
 saadfr
@@ -176,7 +175,7 @@ shayanlol
 rayyanfps
 zakiirl
 tahaa
-omar.zip
+omarzip
 yusufx
 ibbyyy
 ishanv2
