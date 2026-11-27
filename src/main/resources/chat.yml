@@ -7,9 +7,9 @@
 # --------------------------------------------------------------------------
 settings:
   enabled: true
-  min-delay-seconds: 8
-  max-delay-seconds: 35
-  conversation-cooldown-seconds: 60
+  min-delay-seconds: 2
+  max-delay-seconds: 5
+  conversation-cooldown-seconds: 4
   max-concurrent-conversations: 3
   max-lines-per-conversation: 8
 
