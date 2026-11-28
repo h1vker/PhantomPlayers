@@ -1,6 +1,7 @@
 package me.sparklee.phantomplayers.chat;
 
 import me.sparklee.phantomplayers.metrics.Metrics;
+import me.sparklee.phantomplayers.identity.BotRankManager;
 import me.sparklee.phantomplayers.platform.Cancellable;
 import me.sparklee.phantomplayers.platform.SchedulerService;
 import me.sparklee.phantomplayers.population.PopulationRegistry;
@@ -19,17 +20,20 @@ public final class ChatManager {
     private final SchedulerService scheduler;
     private final PopulationRegistry registry;
     private final Metrics metrics;
+    private final BotRankManager botRanks;
     private final Path file;
 
     private ChatConfig config = ChatConfig.defaults();
     private ChatEngine engine;
     private boolean broadcastToConsole = true;
 
-    public ChatManager(Plugin plugin, SchedulerService scheduler, PopulationRegistry registry, Metrics metrics) {
+    public ChatManager(Plugin plugin, SchedulerService scheduler, PopulationRegistry registry, Metrics metrics,
+                       BotRankManager botRanks) {
         this.plugin = plugin;
         this.scheduler = scheduler;
         this.registry = registry;
         this.metrics = metrics;
+        this.botRanks = botRanks;
         this.file = plugin.getDataFolder().toPath().resolve("chat.yml");
     }
 
@@ -78,7 +82,7 @@ public final class ChatManager {
         }
         String body = line.substring(separator + 2);
         return Component.text("[] ", NamedTextColor.GRAY)
-                .append(Component.text("[MEMBER]", NamedTextColor.GRAY).decorate(TextDecoration.BOLD))
+                .append(botRanks.tagComponent(speaker))
                 .append(Component.space())
                 .append(Component.text(speaker, NamedTextColor.WHITE))
                 .append(Component.text(" -> ", NamedTextColor.WHITE).decorate(TextDecoration.BOLD))
