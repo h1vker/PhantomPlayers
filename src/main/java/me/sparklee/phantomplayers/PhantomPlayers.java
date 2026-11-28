@@ -7,6 +7,7 @@ import me.sparklee.phantomplayers.config.ConfigLoader;
 import me.sparklee.phantomplayers.config.ConfigManager;
 import me.sparklee.phantomplayers.config.Settings;
 import me.sparklee.phantomplayers.identity.IdentityManager;
+import me.sparklee.phantomplayers.identity.BotRankManager;
 import me.sparklee.phantomplayers.integration.PlaceholderIntegration;
 import me.sparklee.phantomplayers.integration.PlaceholderStats;
 import me.sparklee.phantomplayers.metrics.Metrics;
@@ -42,6 +43,7 @@ public final class PhantomPlayers extends JavaPlugin {
     private ConfigManager configManager;
     private NamePoolManager namePoolManager;
     private IdentityManager identityManager;
+    private BotRankManager botRanks;
     private PopulationRegistry registry;
     private PaperSchedulerService scheduler;
     private NmsPackets packets;
@@ -87,6 +89,7 @@ public final class PhantomPlayers extends JavaPlugin {
 
         identityManager = new IdentityManager(getDataFolder().toPath(), getLogger());
         identityManager.load(pool);
+        botRanks = new BotRankManager(getDataFolder().toPath(), identityManager.spawnPool(), getLogger());
         if (identityManager.isDirty()) {
             try {
                 identityManager.saveNow();
@@ -113,13 +116,13 @@ public final class PhantomPlayers extends JavaPlugin {
             return;
         }
 
-        presentation = new PresentationManager(this, packets, scheduler, skins, settings);
+        presentation = new PresentationManager(this, packets, scheduler, skins, settings, botRanks);
         presentation.start();
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(presentation), this);
         getServer().getPluginManager().registerEvents(new StatusListener(this::getSettings, registry,
                 identityManager), this);
 
-        chatManager = new ChatManager(this, scheduler, registry, metrics);
+        chatManager = new ChatManager(this, scheduler, registry, metrics, botRanks);
         ChatConfigLoader.Result chatResult = chatManager.load();
         if (chatResult.hasErrors()) {
             for (String error : chatResult.errors()) {
@@ -136,8 +139,9 @@ public final class PhantomPlayers extends JavaPlugin {
         }
 
         spawnService = new SpawnService(configManager, registry, identityManager, presentation, skins, scheduler,
-                metrics);
-        presenceRotation = new PresenceRotationManager(registry, identityManager, presentation, configManager, scheduler);
+                metrics, botRanks);
+        presenceRotation = new PresenceRotationManager(registry, identityManager, presentation, configManager, scheduler,
+                botRanks);
         presenceRotation.start();
 
         PhantomCommand command = new PhantomCommand(this, spawnService, registry, identityManager);
