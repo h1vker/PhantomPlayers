@@ -35,6 +35,7 @@ public final class BotRankManager {
     private final Path file;
     private final Logger logger;
     private final Map<String, String> ranksByName = new LinkedHashMap<>();
+    private final Map<String, String> displayNames = new LinkedHashMap<>();
 
     public BotRankManager(Path dataFolder, List<FakeIdentity> candidates, Logger logger) {
         this.file = dataFolder.resolve("bot-ranks.yml");
@@ -78,6 +79,8 @@ public final class BotRankManager {
                 String key = NameRules.key(name);
                 if (loaded.putIfAbsent(key, rank) != null) {
                     logger.warning("bot-ranks.yml: duplicate ranked username '" + name + "'; ignoring it.");
+                } else {
+                    displayNames.put(key, name);
                 }
             }
         }
@@ -101,7 +104,9 @@ public final class BotRankManager {
         for (Map.Entry<String, Integer> target : TARGETS.entrySet()) {
             for (int count = 0; count < target.getValue() && index < shuffled.size(); count++) {
                 String name = shuffled.get(index++).name();
-                ranksByName.put(NameRules.key(name), target.getKey());
+                String key = NameRules.key(name);
+                ranksByName.put(key, target.getKey());
+                displayNames.put(key, name);
             }
         }
         if (ranksByName.size() < 10) {
@@ -115,7 +120,7 @@ public final class BotRankManager {
         for (String rank : TARGETS.keySet()) {
             List<String> names = new ArrayList<>();
             for (Map.Entry<String, String> entry : ranksByName.entrySet()) {
-                if (rank.equals(entry.getValue())) names.add(entry.getKey());
+                if (rank.equals(entry.getValue())) names.add(displayNames.getOrDefault(entry.getKey(), entry.getKey()));
             }
             yaml.set("ranks." + rank, names);
         }
