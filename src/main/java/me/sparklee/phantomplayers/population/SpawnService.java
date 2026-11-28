@@ -4,6 +4,7 @@ import me.sparklee.phantomplayers.config.ConfigManager;
 import me.sparklee.phantomplayers.config.Settings;
 import me.sparklee.phantomplayers.identity.FakeIdentity;
 import me.sparklee.phantomplayers.identity.IdentityManager;
+import me.sparklee.phantomplayers.identity.BotRankManager;
 import me.sparklee.phantomplayers.metrics.Metrics;
 import me.sparklee.phantomplayers.names.NameRules;
 import me.sparklee.phantomplayers.platform.Cancellable;
@@ -32,12 +33,13 @@ public final class SpawnService {
     private final SkinService skins;
     private final SchedulerService scheduler;
     private final Metrics metrics;
+    private final BotRankManager botRanks;
     private final Random random = new Random();
     private final AtomicBoolean spawnAllRunning = new AtomicBoolean();
 
     public SpawnService(ConfigManager config, PopulationRegistry registry, IdentityManager identities,
                         PresentationManager presentation, SkinService skins, SchedulerService scheduler,
-                        Metrics metrics) {
+                        Metrics metrics, BotRankManager botRanks) {
         this.config = config;
         this.registry = registry;
         this.identities = identities;
@@ -45,6 +47,7 @@ public final class SpawnService {
         this.skins = skins;
         this.scheduler = scheduler;
         this.metrics = metrics;
+        this.botRanks = botRanks;
     }
 
     public boolean spawn(String name, CommandSender sender) {
@@ -132,7 +135,7 @@ public final class SpawnService {
             return;
         }
         List<FakeIdentity> selected = SelectionPlanner.selectSpawnAll(identities.spawnPool(),
-                registry.activeKeys(), registry.recentKeys(), capacity, random);
+                registry.activeKeys(), registry.recentKeys(), capacity, botRanks.rankedNameKeys(), random);
         if (selected.isEmpty()) {
             spawnAllRunning.set(false);
             sender.sendMessage(Text.warn("No spawnable identities. Add usernames to names.txt or despawn "
