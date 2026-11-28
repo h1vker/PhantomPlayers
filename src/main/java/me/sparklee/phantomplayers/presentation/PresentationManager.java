@@ -1,6 +1,7 @@
 package me.sparklee.phantomplayers.presentation;
 
 import me.sparklee.phantomplayers.config.Settings;
+import me.sparklee.phantomplayers.identity.BotRankManager;
 import me.sparklee.phantomplayers.names.NameRules;
 import me.sparklee.phantomplayers.ping.PingManager;
 import me.sparklee.phantomplayers.platform.Cancellable;
@@ -46,6 +47,7 @@ public final class PresentationManager {
     private final NmsPackets packets;
     private final SchedulerService scheduler;
     private final SkinService skins;
+    private final BotRankManager botRanks;
     private final PingManager pings;
     private final JoinQuitCompatibility joinQuit = new JoinQuitCompatibility();
     private final Map<String, Entry> entries = new ConcurrentHashMap<>();
@@ -56,11 +58,12 @@ public final class PresentationManager {
     private Cancellable fallTask;
 
     public PresentationManager(Plugin plugin, NmsPackets packets, SchedulerService scheduler,
-                               SkinService skins, Settings settings) {
+                               SkinService skins, Settings settings, BotRankManager botRanks) {
         this.plugin = plugin;
         this.packets = packets;
         this.scheduler = scheduler;
         this.skins = skins;
+        this.botRanks = botRanks;
         this.settings = settings;
         this.pings = new PingManager(scheduler::runGlobalLater, this::onPingChanged, new Random());
         this.pings.apply(settings.ping());
@@ -454,8 +457,7 @@ public final class PresentationManager {
         boolean listed = settings.presentation().tabList();
         for (Entry entry : snapshot) {
             String name = entry.fake.identity().name();
-            Component displayName = Component.text("[MEMBER]", NamedTextColor.GRAY)
-                    .decorate(TextDecoration.BOLD)
+            Component displayName = botRanks.tagComponent(name)
                     .append(Component.space())
                     .append(Component.text(name, NamedTextColor.WHITE)
                             .decoration(TextDecoration.BOLD, TextDecoration.State.FALSE));
