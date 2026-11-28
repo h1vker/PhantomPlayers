@@ -55,14 +55,16 @@ public final class BotRankManager {
 
     public Component tagComponent(String name) {
         String rank = rankOf(name);
-        NamedTextColor color = switch (rank) {
-            case "MASTER" -> NamedTextColor.LIGHT_PURPLE;
-            case "IMMORTAL" -> NamedTextColor.DARK_RED;
-            case "PRINCE" -> NamedTextColor.GOLD;
-            case "WARRIOR" -> NamedTextColor.GREEN;
-            default -> NamedTextColor.GRAY;
+        String miniMessage = switch (rank) {
+            // Reuse CloverMC's existing TAB gradients exactly:
+            // MASTER = OWNER, IMMORTAL = MOD, PRINCE = FOUNDER, WARRIOR = MANAGER.
+            case "MASTER" -> "<bold><gradient:#000000:#8B0000:#FF1A1A:#000000>[MASTER]</gradient></bold>";
+            case "IMMORTAL" -> "<bold><gradient:#DC143C:#FF69B4>[IMMORTAL]</gradient></bold>";
+            case "PRINCE" -> "<bold><gradient:#FFFFFF:#FFD700:#FF91C8>[PRINCE]</gradient></bold>";
+            case "WARRIOR" -> "<bold><gradient:#00C9A7:#00A3FF>[WARRIOR]</gradient></bold>";
+            default -> "<bold><gray>[MEMBER]</gray></bold>";
         };
-        return Component.text("[" + rank + "]", color).decorate(TextDecoration.BOLD);
+        return net.kyori.adventure.text.minimessage.MiniMessage.miniMessage().deserialize(miniMessage);
     }
 
     private boolean load() {
