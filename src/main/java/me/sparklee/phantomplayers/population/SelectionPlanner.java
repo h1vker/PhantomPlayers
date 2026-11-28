@@ -16,6 +16,11 @@ public final class SelectionPlanner {
     }
 
     public static List<FakeIdentity> selectSpawnAll(List<FakeIdentity> candidates, Set<String> activeKeys,
+                                                    Set<String> recentKeys, int capacity, Random random) {
+        return selectSpawnAll(candidates, activeKeys, recentKeys, capacity, Set.of(), random);
+    }
+
+    public static List<FakeIdentity> selectSpawnAll(List<FakeIdentity> candidates, Set<String> activeKeys,
                                                     Set<String> recentKeys, int capacity,
                                                     Set<String> priorityKeys, Random random) {
         if (capacity <= 0) {
