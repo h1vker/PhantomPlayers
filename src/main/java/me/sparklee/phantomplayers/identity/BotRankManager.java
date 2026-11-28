@@ -2,8 +2,7 @@ package me.sparklee.phantomplayers.identity;
 
 import me.sparklee.phantomplayers.names.NameRules;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.IOException;
@@ -30,6 +29,8 @@ public final class BotRankManager {
             "WARRIOR", 4
     );
 
+    private static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
+
     private final Path file;
     private final Logger logger;
     private final Map<String, String> ranksByName = new LinkedHashMap<>();
@@ -55,14 +56,14 @@ public final class BotRankManager {
 
     public Component tagComponent(String name) {
         String rank = rankOf(name);
-        NamedTextColor color = switch (rank) {
-            case "MASTER" -> NamedTextColor.LIGHT_PURPLE;
-            case "IMMORTAL" -> NamedTextColor.DARK_RED;
-            case "PRINCE" -> NamedTextColor.GOLD;
-            case "WARRIOR" -> NamedTextColor.GREEN;
-            default -> NamedTextColor.GRAY;
+        String prefix = switch (rank) {
+            case "MASTER" -> "<bold><gradient:#FFAA00:#FF5555>[MASTER]</gradient></bold>";
+            case "IMMORTAL" -> "<bold><gradient:#FF3333:#FFD700>[IMMORTAL]</gradient></bold>";
+            case "PRINCE" -> "<bold><gradient:#B56BFF:#FF55CC>[PRINCE]</gradient></bold>";
+            case "WARRIOR" -> "<bold><gradient:#00D4FF:#0066FF>[WARRIOR]</gradient></bold>";
+            default -> "<bold><gray>[MEMBER]</gray></bold>";
         };
-        return Component.text("[" + rank + "]", color).decorate(TextDecoration.BOLD);
+        return MINI_MESSAGE.deserialize(prefix);
     }
 
     private boolean load() {
