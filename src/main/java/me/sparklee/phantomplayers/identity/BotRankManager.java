@@ -12,9 +12,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -98,7 +96,10 @@ public final class BotRankManager {
     }
 
     private void assignRandom(List<FakeIdentity> candidates) {
-        List<FakeIdentity> shuffled = new ArrayList<>(candidates);
+        List<FakeIdentity> shuffled = new ArrayList<>();
+        for (FakeIdentity candidate : candidates) {
+            if (candidate.enabled()) shuffled.add(candidate);
+        }
         Collections.shuffle(shuffled);
         int index = 0;
         for (Map.Entry<String, Integer> target : TARGETS.entrySet()) {
