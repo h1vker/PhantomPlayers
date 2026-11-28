@@ -2,6 +2,7 @@ package me.sparklee.phantomplayers.population;
 
 import me.sparklee.phantomplayers.config.ConfigManager;
 import me.sparklee.phantomplayers.identity.IdentityManager;
+import me.sparklee.phantomplayers.identity.BotRankManager;
 import me.sparklee.phantomplayers.platform.Cancellable;
 import me.sparklee.phantomplayers.platform.SchedulerService;
 import me.sparklee.phantomplayers.presentation.PresentationManager;
@@ -34,6 +35,7 @@ public final class PresenceRotationManager {
     private final PresentationManager presentation;
     private final ConfigManager config;
     private final SchedulerService scheduler;
+    private final BotRankManager botRanks;
     private final Random random = new Random();
     private final List<String> cycle = new ArrayList<>();
     private final Set<String> away = new HashSet<>();
@@ -45,12 +47,13 @@ public final class PresenceRotationManager {
 
     public PresenceRotationManager(PopulationRegistry registry, IdentityManager identities,
                                    PresentationManager presentation, ConfigManager config,
-                                   SchedulerService scheduler) {
+                                   SchedulerService scheduler, BotRankManager botRanks) {
         this.registry = registry;
         this.identities = identities;
         this.presentation = presentation;
         this.config = config;
         this.scheduler = scheduler;
+        this.botRanks = botRanks;
     }
 
     public synchronized void start() {
@@ -168,7 +171,7 @@ public final class PresenceRotationManager {
                 .append(Component.text("]", NamedTextColor.DARK_GRAY).decorate(bold));
         return symbol
                 .append(Component.space())
-                .append(Component.text("[MEMBER]", NamedTextColor.GRAY).decorate(bold))
+                .append(botRanks.tagComponent(name))
                 .append(Component.space())
                 .append(Component.text(name, NamedTextColor.WHITE).decorate(bold));
     }
